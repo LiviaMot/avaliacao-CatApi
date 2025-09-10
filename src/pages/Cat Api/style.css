@@ -1,19 +1,71 @@
-div {
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #555;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header-actions {
+  margin-bottom: 2rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
-h1 {
-  color: #FFF;
-}
-
-img {
-  width: 500px;
-}
-
-div > button {
-  padding: 10px;
+.gallery-item {
   width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  background-color: #fff;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.breed-name {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.erro {
+  background-color: #ffdddd;
+  border: 1px solid #f44336;
+  padding: 20px;
+  border-radius: 8px;
+  color: #f44336;
 }

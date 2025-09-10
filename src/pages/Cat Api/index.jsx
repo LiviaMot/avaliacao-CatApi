@@ -1,59 +1,65 @@
-import { Link } from 'react-router-dom'
-import api from '../../api/api'
-import './style.css'
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import api from '../../api/api';
+import './style.css';
+import { useEffect, useState } from 'react';
 
 export default function CatApi() {
-  const [imagemUrl, setImagemUrl] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [gatos, setGatos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  async function buscarGato() {
-    setIsLoading(true)
-    setError(null)
+  async function buscarGatos() {
+    setIsLoading(true);
+    setError(null);
     try {
-      const response = await api.get('/images/search')
-      setImagemUrl(response.data[0].url)
+      const response = await api.get('/images/search?limit=12&has_breeds=1');
+      setGatos(response.data);
     } catch (err) {
-      setError(err)
+      setError(err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
   useEffect(() => {
-    buscarGato()
-  }, [])
+    buscarGatos();
+  }, []);
 
   if (error) {
     return (
-      <div className='card-gato erro'>
+      <div className='container erro'>
         <h2>Deu ruim!</h2>
-        <p>Não foi possivel buscar um gatinho agora.</p>
-        <button onClick={buscarGato}>Tentar Novamente</button>
+        <p>Não foi possível buscar os gatinhos agora.</p>
+        <button onClick={buscarGatos}>Tentar Novamente</button>
       </div>
-    )
+    );
   }
 
   return (
-    <>
-      <h1>Buscador de Gatos</h1>
-      <div>
-        <div>
-          {isLoading ? (
-            <p>Procurando...</p>
-          ) : (
-            <img src={imagemUrl} alt="Um gatinho aleatório" />
-          )}
-        </div>
+    <div className="container">
+      <h1>Galeria de Gatos</h1>
 
-        <button onClick={buscarGato} disabled={isLoading}>
-          {isLoading ? 'Buscando...' : 'Buscar Novo Gato'}
+      <div className="header-actions">
+        <button onClick={buscarGatos} disabled={isLoading}>
+          {isLoading ? 'Buscando...' : 'Buscar Nova Galeria'}
         </button>
+        <Link to="/">
+          <button type="button">Home</button>
+        </Link>
       </div>
-      <Link to="/">
-        <button type="button">Home</button>
-      </Link>
-    </>
-  )
+
+      {isLoading ? (
+        <p className="loading-text">Procurando gatinhos...</p>
+      ) : (
+        <div className="gallery-container">
+          {gatos.map((gato) => (
+            <div key={gato.id} className="gallery-item">
+              <img src={gato.url} alt={gato.breeds[0]?.name || 'Gato'} />
+              <p className="breed-name"><strong>Raça:</strong> {gato.breeds[0]?.name || 'Raça não definida'}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
