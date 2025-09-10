@@ -8,6 +8,9 @@ export default function Home() {
       <Link to="/catApi">
         <button type="button">Cat Api</button>
       </Link>
+      <Link to="/count">
+        <button type="button">Contador</button>
+      </Link>
     </>
   )
 }
