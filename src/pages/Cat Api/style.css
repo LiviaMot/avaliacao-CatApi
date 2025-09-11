@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #555;
+  background-color: #7ad2f5d2;
 }
 
 .container {
@@ -24,7 +24,7 @@ body {
 
 .loading-text {
   font-size: 1.5rem;
-  color: #555;
+  color: #300ef1;
 }
 
 .gallery-container {
@@ -36,7 +36,7 @@ body {
 
 .gallery-item {
   width: 300px;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
