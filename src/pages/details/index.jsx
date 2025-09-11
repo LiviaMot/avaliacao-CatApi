@@ -1,8 +1,11 @@
-import {useParams} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Details() {
-    const {id} = useParams();
+  const location = useLocation();
+  const { id } = location.state || {}
+  console.log(location.state)
+
     const [breed,setBreed] = useState(null);
 
     useEffect(() => {
@@ -12,7 +15,7 @@ function Details() {
             const b = data.find(item => item.id === id);
             setBreed(b);
         });
-    })
+    }, [])
     if (!breed) return <p>Carregando...</p>;
 
     return (

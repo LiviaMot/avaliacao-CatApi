@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/api';
 import './style.css';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ export default function CatApi() {
   const [gatos, setGatos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   async function buscarGatos() {
     setIsLoading(true);
@@ -56,6 +57,9 @@ export default function CatApi() {
             <div key={gato.id} className="gallery-item">
               <img src={gato.url} alt={gato.breeds[0]?.name || 'Gato'} />
               <p className="breed-name"><strong>Raça:</strong> {gato.breeds[0]?.name || 'Raça não definida'}</p>
+            <button onClick={() => { navigate("/details/"+gato.id, {state: { id: gato.breeds[0]?.id }}) }}>
+              Detalhes
+            </button>
             </div>
           ))}
         </div>
