@@ -1,0 +1,26 @@
+.container-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 30px 20px;
+
+  border-radius: 40px;
+  border: 1px solid #2e2a2a;
+
+  background-color: #828341;
+}
+
+.container-count > .num {
+  font-size: 70px;
+}
+
+.container-bnt {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+button {
+  font-size: 18px;
+}
