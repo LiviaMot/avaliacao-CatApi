@@ -6,17 +6,19 @@ export default function Contador() {
   const [number, setNumber] = useState(0)
 
   return (
-    <div>
+    <div className='container-count'>
       <h1>Contador de Cliques</h1>
 
-      <p>{number}</p>
-      <button onClick={ () => {
-        setNumber(number + 1)
-      } }>Aumentar</button>
+      <p className='num'>{number}</p>
+      <div className='container-bnt'>
+        <button onClick={ () => {
+          setNumber(number + 1)
+        } }>Aumentar</button>
 
-      <Link to="/">
-        <button type="button">Home</button>
-      </Link>
+        <Link to="/">
+          <button type="button">Home</button>
+        </Link>
+      </div>
     </div>
   )
 }
